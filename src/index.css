@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ui.grid {
+  margin: 0;
+}
+
+.ui.input {
+  width: 100%;
+}
+
+.ui.selection.dropdown {
+  width: 100%;
+}
