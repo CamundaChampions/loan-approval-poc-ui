@@ -1,0 +1,72 @@
+{
+    "loanUsage": [
+        {
+            "label": "Business Launching",
+            "value": "1"
+        },
+        {
+            "label": "Home Improvement",
+            "value": "2"
+        },
+        {
+            "label": "Education",
+            "value": "3"
+        },
+        {
+            "label": "House Buying",
+            "value": "4"
+        },
+        {
+            "label": "Investment",
+            "value": "5"
+        },
+        {
+            "label": "Other",
+            "value": "6"
+        }
+    ],
+    "collateralType": [
+        {
+            "value": "1",
+            "text": "Type 1"
+        },
+        {
+            "value": "2",
+            "text": "Type 2"
+        }
+    ],
+    "maritalStatus": [
+        {
+            "label": "Single",
+            "value": "Single"
+        },
+        {
+            "label": "Married",
+            "value": "Married"
+        },
+        {
+            "label": "Other",
+            "value": "Other"
+        }
+    ],
+    "country": [
+        {
+            "value": "1",
+            "text": "Type 1"
+        },
+        {
+            "value": "2",
+            "text": "Type 2"
+        }
+    ],
+    "accountType": [
+        {
+            "value": "1",
+            "text": "Type 1"
+        },
+        {
+            "value": "2",
+            "text": "Type 2"
+        }
+    ]
+}
