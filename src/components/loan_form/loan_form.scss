@@ -1,9 +1,11 @@
 .container {
     height: 200px;
-    // background-color: rebeccapurple;
     margin: 0 20%;
-    .section-title {
-        font-size: 15px;
-        font-weight: 700;
+
+    label {
+        color: #2C3345;
+        margin-bottom: 5px;
+        display: block;
+        font-weight: 500;
     }
 }
