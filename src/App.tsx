@@ -1,10 +1,15 @@
 import './App.css';
-import ApplyLoan from './pages/apply_loan/apply_loan';
+import LoanHeader from './components/loan_header/loan_header';
+import Routes from './routes/routes';
 
 function App() {
   return (
-    // <div>Hello</div>
-    <ApplyLoan />
+    <>
+      <LoanHeader />
+      <main>
+        <Routes />
+      </main>
+    </>
   );
 }
 

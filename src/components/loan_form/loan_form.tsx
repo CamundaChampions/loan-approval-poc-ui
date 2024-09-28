@@ -66,7 +66,6 @@ const LoanForm = () => {
                             </GridColumn>
                             <GridColumn>
                                 <Input name='terms' placeholder='Terms(In yrs)' />
-                                {/* {touched.name && errors.name && <div>{errors.name}</div>} */}
                             </GridColumn>
                         </GridRow>
                         <GridRow>
@@ -75,6 +74,7 @@ const LoanForm = () => {
                                 {
                                     config.loanUsage.map(item => (
                                         <Radio
+                                            key={item.value}
                                             name='usage'
                                             label={item.label}
                                             value={item.value}
@@ -148,6 +148,7 @@ const LoanForm = () => {
                                 {
                                     config.maritalStatus.map(item => (
                                         <Radio
+                                            key={item.value}
                                             name='maritalStatus'
                                             label={item.label}
                                             value={item.value}
@@ -280,7 +281,7 @@ const LoanForm = () => {
                             </GridColumn>
                         </GridRow>
                         <GridRow>
-                            <GridColumn>
+                            <GridColumn width={16} textAlign='center'>
                                 <SubmitButton loading={isSubmitting} primary>Send Application Now</SubmitButton>
                             </GridColumn>
                         </GridRow>
