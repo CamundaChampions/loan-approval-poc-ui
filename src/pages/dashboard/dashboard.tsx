@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import PageTitle from '../../components/page_title/page_title';
 
 const Dashboard = () => {
 
@@ -10,7 +11,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h2>Dashboard</h2>
+            <PageTitle title='Dashboard' />
             <button onClick={handleClick} >Apply Loan</button>
         </div>
     )

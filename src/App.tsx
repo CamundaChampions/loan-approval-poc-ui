@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <LoanHeader />
-      <main>
+      <main className='container'>
         <Routes />
       </main>
     </>
