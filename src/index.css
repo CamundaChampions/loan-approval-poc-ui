@@ -29,3 +29,14 @@ code {
 .ui.radio.checkbox {
   padding-right: 1rem;
 }
+
+label {
+  color: #2C3345;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: 500;
+}
+
+.shadow_label {
+  color: #888;
+}

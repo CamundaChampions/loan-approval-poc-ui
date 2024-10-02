@@ -37,15 +37,15 @@
     ],
     "maritalStatus": [
         {
-            "label": "Single",
+            "text": "Single",
             "value": "Single"
         },
         {
-            "label": "Married",
+            "text": "Married",
             "value": "Married"
         },
         {
-            "label": "Other",
+            "text": "Other",
             "value": "Other"
         }
     ],

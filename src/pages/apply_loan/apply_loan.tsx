@@ -7,6 +7,43 @@ import { useState } from 'react';
 import PageTitle from '../../components/page_title/page_title';
 import SectionTitle from '../../components/section_title/section_title';
 import config from '../../components/configuration/lookup_configuration.json';
+import { COMMON, LOAN_APPLICATION_FORM } from '../../components/constants/constants';
+
+const {
+    TERMS_IN_YEARS,
+    LOAN_USAGE,
+    ACCOUNT_NUMBER,
+    ADDRESS,
+    BALANCE,
+    BANK_NAME,
+    CITY,
+    COLLATERAL_TYPE,
+    CONTACT_INFORMATION,
+    COUNTRY,
+    DOB,
+    EMAIL,
+    FIRST_NAME,
+    LAST_NAME,
+    LOAN_APPLICATION_FORM_TITLE,
+    MARITAL_STTAUS,
+    PHONE,
+    SECURITIES,
+    STATE,
+    STREET_ADDRESS,
+    ZIP_CODE,
+    LOAN_AMOUNT,
+    CONCENT_MESSAGE,
+    SEND_BTN,
+    CONCENT,
+    ACCOUNT_TYPE,
+    BANK_REFERENCE,
+    EMPLOYMENT_INFORMATION,
+    EXPERIENCE,
+    INCOME,
+    INSTITUTION_NAME,
+    OCCUPATION,
+    PRESENT_EMPLOYER
+} = LOAN_APPLICATION_FORM;
 
 const ApplyLoan = () => {
 
@@ -56,21 +93,21 @@ const ApplyLoan = () => {
 
     return (
         <div className='loan-form'>
-            <PageTitle title='Loan Application Form' />
+            <PageTitle title={LOAN_APPLICATION_FORM_TITLE} />
             <Formik initialValues={initialValues} onSubmit={onSubmitForm} >
                 <Form>
                     <Grid columns={2}>
                         <GridRow>
                             <GridColumn>
-                                <Input name='loanAmount' placeholder='Loan Amount' />
+                                <Input name='loanAmount' placeholder={LOAN_AMOUNT} />
                             </GridColumn>
                             <GridColumn>
-                                <Input name='terms' placeholder='Terms(In yrs)' />
+                                <Input name='terms' placeholder={TERMS_IN_YEARS} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn width={12}>
-                                <label>Loan will be used for</label>
+                                <label>{LOAN_USAGE}</label>
                                 {
                                     config.loanUsage.map(item => (
                                         <Radio
@@ -85,14 +122,14 @@ const ApplyLoan = () => {
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <SectionTitle title='Securities' />
+                                <SectionTitle title={SECURITIES} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Select
                                     name='collateralType'
-                                    placeholder='Collateral Type'
+                                    placeholder={COLLATERAL_TYPE}
                                     options={config.collateralType}
                                 />
                             </GridColumn>
@@ -101,41 +138,41 @@ const ApplyLoan = () => {
                             <GridColumn>
                                 <Input
                                     name='bankName'
-                                    placeholder='Bank Name' />
+                                    placeholder={BANK_NAME} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='accountNumber'
-                                    placeholder='Account Number' />
+                                    placeholder={ACCOUNT_NUMBER} />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='balance'
-                                    placeholder='Balance' />
+                                    placeholder={BALANCE} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <SectionTitle title='Contact Informaction' />
+                                <SectionTitle title={CONTACT_INFORMATION} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='firstName'
-                                    placeholder='First Name' />
+                                    placeholder={FIRST_NAME} />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='lastName'
-                                    placeholder='Last Name' />
+                                    placeholder={LAST_NAME} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <label>DOB</label>
+                                <label>{DOB}</label>
                                 <Input
                                     name='dob'
                                     type='date'
@@ -144,61 +181,55 @@ const ApplyLoan = () => {
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <label>Marital Status</label>
-                                {
-                                    config.maritalStatus.map(item => (
-                                        <Radio
-                                            key={item.value}
-                                            name='maritalStatus'
-                                            label={item.label}
-                                            value={item.value}
-                                        />
-                                    ))
-                                }
+                                <Select
+                                    name='maritalStatus'
+                                    placeholder={MARITAL_STTAUS}
+                                    options={config.maritalStatus}
+                                />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='email'
-                                    placeholder='E-mail' />
+                                    placeholder={EMAIL} />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='phone'
-                                    placeholder='Phone' />
+                                    placeholder={PHONE} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn width={16}>
-                                <label>Address</label>
+                                <label>{ADDRESS}</label>
                                 <Input
                                     name='address'
-                                    placeholder='Street Address' />
+                                    placeholder={STREET_ADDRESS} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='city'
-                                    placeholder='City' />
+                                    placeholder={CITY} />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='state'
-                                    placeholder='State / Province' />
+                                    placeholder={STATE} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='zipCode'
-                                    placeholder='Postal / Zip Code' />
+                                    placeholder={ZIP_CODE} />
                             </GridColumn>
                             <GridColumn>
                                 <Select
                                     name='country'
-                                    placeholder='Country'
+                                    placeholder={COUNTRY}
                                     options={config.country}
                                 />
                             </GridColumn>
@@ -214,75 +245,75 @@ const ApplyLoan = () => {
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <SectionTitle title='Employment Information' />
+                                <SectionTitle title={EMPLOYMENT_INFORMATION} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='employer'
-                                    placeholder='Present Employer' />
+                                    placeholder={PRESENT_EMPLOYER} />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='occupation'
-                                    placeholder='Occupation' />
+                                    placeholder={OCCUPATION} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
                                 <Input
                                     name='income'
-                                    placeholder='Gross monthly income' />
+                                    placeholder={INCOME} />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='experience'
-                                    placeholder='Years of experience' />
+                                    placeholder={EXPERIENCE} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <SectionTitle title='Bank References' />
+                                <SectionTitle title={BANK_REFERENCE} />
                             </GridColumn>
                         </GridRow>
                         <GridRow columns={3}>
                             <GridColumn>
                                 <Input
                                     name='institutionName'
-                                    placeholder='Institution Name' />
+                                    placeholder={INSTITUTION_NAME} />
                             </GridColumn>
                             <GridColumn>
                                 <Select
                                     name='accountType'
-                                    placeholder='Account Type'
+                                    placeholder={ACCOUNT_TYPE}
                                     options={config.collateralType}
                                 />
                             </GridColumn>
                             <GridColumn>
                                 <Input
                                     name='referenceAccountNumber'
-                                    placeholder='Account Number' />
+                                    placeholder={ACCOUNT_NUMBER} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <SectionTitle title='Consent' />
+                                <SectionTitle title={CONCENT} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn width={16}>
-                                <div>I hereby agree that the information given is true, accurate and complete as of the date of this application submission.</div>
+                                <div>{CONCENT_MESSAGE}</div>
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn>
-                                <Checkbox name='consent' label={'YES'} />
+                                <Checkbox name='consent' label={COMMON.YES} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn width={16} textAlign='center'>
-                                <SubmitButton loading={isSubmitting} primary>Send Application Now</SubmitButton>
+                                <SubmitButton loading={isSubmitting} primary>{SEND_BTN}</SubmitButton>
                             </GridColumn>
                         </GridRow>
                     </Grid>
