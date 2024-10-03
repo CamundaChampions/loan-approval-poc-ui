@@ -8,6 +8,7 @@ import PageTitle from '../../components/page_title/page_title';
 import SectionTitle from '../../components/section_title/section_title';
 import config from '../../components/configuration/lookup_configuration.json';
 import { COMMON, LOAN_APPLICATION_FORM } from '../../components/constants/constants';
+import { useNavigate } from 'react-router-dom';
 
 const {
     TERMS_IN_YEARS,
@@ -47,6 +48,7 @@ const {
 
 const ApplyLoan = () => {
 
+    const navigate = useNavigate();
     const initialValues = {
         loanAmount: '',
         terms: '',
@@ -88,7 +90,9 @@ const ApplyLoan = () => {
         setisSubmitting(true);
         setTimeout(() => {
             setisSubmitting(false);
+            navigate('/view_loan');
         }, 1000);
+        
     }
 
     return (

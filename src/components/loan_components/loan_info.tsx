@@ -15,13 +15,13 @@ const LoanInfo = () => {
                         <label className='shadow_label'>Desired Loan Amount Rs.</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>RS 5,000.00/-</label>
+                        {'RS 5,000.00/-'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{TERMS_IN_YEARS}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>5</label>
+                        {'5'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -29,7 +29,7 @@ const LoanInfo = () => {
                         <label className='shadow_label'>{LOAN_USAGE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>House Buying </label>
+                        {'House Buying '}
                     </GridColumn>
                 </GridRow>
             </Grid>

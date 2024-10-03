@@ -24,13 +24,13 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{FIRST_NAME}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Raj</label>
+                        {'Raj'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{LAST_NAME}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Ravish</label>
+                        {'Ravish'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -38,7 +38,7 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{DOB}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>15/5/2010</label>
+                        {'15/5/2010'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -46,7 +46,7 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{MARITAL_STTAUS}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Single</label>
+                        {'Single'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -54,13 +54,13 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{EMAIL}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>john@gmail.com</label>
+                        {'john@gmail.com'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{PHONE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>+91 9731103018</label>
+                        {'+91 9731103018'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -68,7 +68,7 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{STREET_ADDRESS}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Electronic City</label>
+                        {'Electronic City'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -76,13 +76,13 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{CITY}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Bengaluru</label>
+                        {'Bengaluru'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{STATE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Karnataka</label>
+                        {'Karnataka'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -90,13 +90,13 @@ const ContactInformation = () => {
                         <label className='shadow_label'>{ZIP_CODE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>560100</label>
+                        {'560100'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{COUNTRY}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>India</label>
+                        {'India'}
                     </GridColumn>
                 </GridRow>
             </Grid>

@@ -17,13 +17,13 @@ const EmploymentInformation = () => {
                         <label className='shadow_label'>{PRESENT_EMPLOYER}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Genpact LNC</label>
+                        {'Genpact LNC'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{OCCUPATION}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Developer</label>
+                        {'Developer'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -31,13 +31,13 @@ const EmploymentInformation = () => {
                         <label className='shadow_label'>{INCOME}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Rs 2,000.00/-</label>
+                        {'Rs 2,000.00/-'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{EXPERIENCE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>10</label>
+                        {'10'}
                     </GridColumn>
                 </GridRow>
             </Grid>

@@ -17,7 +17,7 @@ const Securities = () => {
                         <label className='shadow_label'>{COLLATERAL_TYPE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>Type 1</label>
+                        {'Type 1'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -25,7 +25,7 @@ const Securities = () => {
                         <label className='shadow_label'>{BANK_NAME}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>HDFC Bank</label>
+                        {'HDFC Bank'}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -33,13 +33,13 @@ const Securities = () => {
                         <label className='shadow_label'>{ACCOUNT_NUMBER}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>3456 7856 7856 9087</label>
+                        {'3456 7856 7856 9087'}
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{BALANCE}</label>
                     </GridColumn>
                     <GridColumn>
-                        <label>RS 5,000.00/-</label>
+                        {'RS 5,000.00/-'}
                     </GridColumn>
                 </GridRow>
             </Grid>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import PageTitle from '../../components/page_title/page_title';
-import { Table, TableHeader, TableRow, TableHeaderCell, TableCell, Button, Container, Grid, GridRow, GridColumn, Segment } from 'semantic-ui-react';
+import { Table, TableHeader, TableRow, TableHeaderCell, TableCell, Button, Grid, GridRow, GridColumn } from 'semantic-ui-react';
 
 const Dashboard = () => {
 
@@ -61,8 +61,8 @@ const Dashboard = () => {
                                     <TableHeaderCell>
                                         Loan Reason
                                     </TableHeaderCell>
-                                <TableHeaderCell>
-                                    Button
+                                    <TableHeaderCell>
+                                        Button
                                     </TableHeaderCell>
                                 </TableRow>
                             </TableHeader>
@@ -70,9 +70,9 @@ const Dashboard = () => {
                                 {
                                     loanData.map((loan) => (
                                         <TableRow>
-                                        <TableCell>
-                                            {loan.srNo}
-                                        </TableCell>
+                                            <TableCell>
+                                                {loan.srNo}
+                                            </TableCell>
                                             <TableCell>
                                                 {loan.loanId}
                                             </TableCell>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                         </Table>
                     </GridColumn>
                 </GridRow>
-                
+
             </Grid>
 
             {/* <Button onClick={handleClick} >Apply Loan</Button> */}
