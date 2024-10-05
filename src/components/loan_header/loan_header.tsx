@@ -40,7 +40,7 @@ const LoanHeader = () => {
                         <Header as='h1'>Camunda POC</Header>
                     </GridColumn>
                     <GridColumn className='applicant_dropdown'>
-                        <Dropdown placeholder='Applicant' options={applicantsList} />
+                        <Dropdown placeholder='Applicant' value={applicantsList[0].value} options={applicantsList} />
                     </GridColumn>
                 </GridRow>
             </Grid>
