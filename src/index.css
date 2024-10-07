@@ -40,3 +40,11 @@ label {
 .shadow_label {
   color: #888;
 }
+
+.width_100 {
+  width: 100%;
+}
+
+.center {
+  text-align: center !important;
+}

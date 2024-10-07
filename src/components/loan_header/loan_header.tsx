@@ -2,32 +2,56 @@ import Logo from '../../assets/img/genpact_logo.png';
 import { Grid, GridRow, GridColumn, Image, Header, Dropdown } from 'semantic-ui-react';
 import './loan_header.scss';
 import { useNavigate } from 'react-router-dom';
-
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { useAppDispatch } from '../../store/store';
+import { setUserType } from '../../store/slice';
+import { UserType } from '../../store/types';
 
 const LoanHeader = () => {
 
     let navigate = useNavigate();
+    const dispatch = useAppDispatch();
     const applicantsList = [
         {
-            key: "Applicant_1",
-            text: "Applicant_1",
-            value: "Applicant_1"
+            key: "Applicant 1",
+            text: "Applicant 1",
+            value: "Applicant 1"
         },
         {
-            key: "Applicant_2",
-            text: "Applicant_2",
-            value: "Applicant_2"
+            key: "Applicant 2",
+            text: "Applicant 2",
+            value: "Applicant 2"
         },
         {
-            key: "Applicant_3",
-            text: "Applicant_3",
-            value: "Applicant_3"
+            key: "Financial Manager",
+            text: "Financial Manager",
+            value: "Financial Manager"
+        },
+        {
+            key: "Manager Approval",
+            text: "Manager Approval",
+            value: "Manager Approval"
         }
-    ]
+    ];
+    const [selectedOption, setSelectedOption] = useState(applicantsList[0].value);
+    useEffect(() => {
+        dispatch(setUserType(UserType.Applicant));
+    }, [])
 
     const handleClick = () => {
-        navigate('/dashboard')
+        navigate('/dashboard');
     }
+
+    const handleChange = (event: SyntheticEvent) => {
+        // @ts-ignore
+        const value: string = event?.target?.innerText;
+        setSelectedOption(value);
+        if (value.includes('Applicant')) {
+            dispatch(setUserType(UserType.Applicant));
+        } else {
+            dispatch(setUserType(UserType.NonApplicant));
+        }
+    };
 
     return (
         <div className='header'>
@@ -40,7 +64,11 @@ const LoanHeader = () => {
                         <Header as='h1'>Camunda POC</Header>
                     </GridColumn>
                     <GridColumn className='applicant_dropdown'>
-                        <Dropdown placeholder='Applicant' value={applicantsList[0].value} options={applicantsList} />
+                        <Dropdown
+                            onChange={handleChange}
+                            name={'dropdown'}
+                            value={selectedOption}
+                            options={applicantsList} />
                     </GridColumn>
                 </GridRow>
             </Grid>
