@@ -2,13 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import PageTitle from '../../components/page_title/page_title';
 import { Table, TableHeader, TableRow, TableHeaderCell, TableCell, Button, Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import { UserType } from '../../store/types';
-import { getUserType } from '../../store/selectors';
+import { loanSummary, UserType } from '../../store/types';
+import { getUser, getUserType } from '../../store/selectors';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Dashboard = () => {
 
     let navigate = useNavigate();
     const userType = useSelector(getUserType);
+    const user = useSelector(getUser);
+    const [loanSummaryList, setLoanSummaryList] = useState<loanSummary[]>([]);
 
     const handleClick = (action: string) => {
         switch (action) {
@@ -19,20 +23,21 @@ const Dashboard = () => {
                 navigate('/view_loan')
                 break;
         }
-
     }
 
-    const loanData = [
-        {
-            srNo: 1,
-            loanId: 3,
-            amount: "10,00,000",
-            term: 3,
-            status: "PENDING_INFO_CORRECTION",
-            loanReason: "Housing",
-            buttonLabel: "View"
-        }
-    ]
+    useEffect(() => {
+        axios.post("http://localhost:9090/api/v1/getdata", {
+        }, {
+            headers: {
+                'user-id': user
+            }
+        }).then((response) => {
+            console.log(response);
+            setLoanSummaryList(response?.data?.loanSummaryList || []);
+        }).catch(response => {
+            console.log(response);
+        });
+    }, []);
 
     const isNonApplicantUser = () => userType === UserType.NonApplicant;
 
@@ -66,7 +71,7 @@ const Dashboard = () => {
                     </GridRow>
                 }
                 {
-                    isNonApplicantUser() &&
+                    loanSummaryList.length &&
                     <GridRow>
                         <GridColumn>
                             <Table celled>
@@ -96,13 +101,13 @@ const Dashboard = () => {
                                 </TableHeader>
                                 <tbody>
                                     {
-                                        loanData.map((loan) => (
+                                        loanSummaryList.map((loan) => (
                                             <TableRow>
                                                 <TableCell>
-                                                    {loan.srNo}
+                                                    {''}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.loanId}
+                                                    {loan.loanApplicationId}
                                                 </TableCell>
                                                 <TableCell>
                                                     {loan.amount}
@@ -111,16 +116,16 @@ const Dashboard = () => {
                                                     {loan.term}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.status}
+                                                    {loan.statusCode}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.loanReason}
+                                                    {''}
                                                 </TableCell>
-                                                <TableCell className='center'>
+                                                {/* <TableCell className='center'>
                                                     <Button primary onClick={() => handleClick('view')}>
                                                         {loan.buttonLabel}
                                                     </Button>
-                                                </TableCell>
+                                                </TableCell> */}
                                             </TableRow>
                                         ))
                                     }

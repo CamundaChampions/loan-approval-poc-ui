@@ -35,7 +35,7 @@ const LoanHeader = () => {
     ];
     const [selectedOption, setSelectedOption] = useState(applicantsList[0].value);
     useEffect(() => {
-        dispatch(setUserType(UserType.Applicant));
+        dispatch(setUserType({ userType: UserType.Applicant, user: applicantsList[0].value }));
     }, [])
 
     const handleClick = () => {
@@ -47,9 +47,9 @@ const LoanHeader = () => {
         const value: string = event?.target?.innerText;
         setSelectedOption(value);
         if (value.includes('Applicant')) {
-            dispatch(setUserType(UserType.Applicant));
+            dispatch(setUserType({ userType: UserType.Applicant, user: value }));
         } else {
-            dispatch(setUserType(UserType.NonApplicant));
+            dispatch(setUserType({ userType: UserType.NonApplicant, user: value }));
         }
     };
 

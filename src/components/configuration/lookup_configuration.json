@@ -1,28 +1,20 @@
 {
-    "loanUsage": [
+    "category": [
         {
-            "label": "Business Launching",
-            "value": "1"
+            "label": "Home Loan",
+            "value": "HOME_LOAN"
         },
         {
-            "label": "Home Improvement",
-            "value": "2"
+            "label": "Car Loan",
+            "value": "CAR_LOAN"
         },
         {
-            "label": "Education",
-            "value": "3"
+            "label": "Personal Loan",
+            "value": "PERSONAL_LOAN"
         },
         {
-            "label": "House Buying",
-            "value": "4"
-        },
-        {
-            "label": "Investment",
-            "value": "5"
-        },
-        {
-            "label": "Other",
-            "value": "6"
+            "label": "Business Loan",
+            "value": "BUSINESS_LOAN"
         }
     ],
     "collateralType": [

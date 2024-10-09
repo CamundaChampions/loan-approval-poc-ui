@@ -1,7 +1,7 @@
 import './apply_loan.scss';
 import { Formik, Form } from 'formik';
 import { Input, Select, Radio, Checkbox, SubmitButton } from 'formik-semantic-ui-react';
-import { Grid, GridRow, GridColumn } from 'semantic-ui-react';
+import { Grid, GridRow, GridColumn, TextArea } from 'semantic-ui-react';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import PageTitle from '../../components/page_title/page_title';
@@ -9,6 +9,9 @@ import SectionTitle from '../../components/section_title/section_title';
 import config from '../../components/configuration/lookup_configuration.json';
 import { COMMON, LOAN_APPLICATION_FORM } from '../../components/constants/constants';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { getUser, getUserType } from '../../store/selectors';
 
 const {
     TERMS_IN_YEARS,
@@ -48,11 +51,12 @@ const {
 
 const ApplyLoan = () => {
 
+    const user = useSelector(getUser);
     const navigate = useNavigate();
     const initialValues = {
-        loanAmount: '',
-        terms: '',
-        usage: '',
+        amount: '',
+        term: '',
+        loanCategory: '',
         collateralType: '',
         bankName: '',
         accountNumber: '',
@@ -76,7 +80,8 @@ const ApplyLoan = () => {
         institutionName: '',
         accountType: '',
         referenceAccountNumber: '',
-        consent: false
+        consent: false,
+        comments: ''
     }
 
     const [isSubmitting, setisSubmitting] = useState(false);
@@ -88,11 +93,28 @@ const ApplyLoan = () => {
     const onSubmitForm = (values: any) => {
         console.log(JSON.stringify(values));
         setisSubmitting(true);
-        setTimeout(() => {
-            setisSubmitting(false);
-            navigate('/view_loan');
-        }, 1000);
-        
+        const { loanCategory, amount, term, comments, reason } = values;
+        axios.post("http://localhost:9090/api/v1/loan", {
+            loanCategory,
+            amount,
+            term,
+            comments,
+            reason
+        }, {
+            headers: {
+                'user-id': user
+            }
+        }).then((response) => {
+            callback(response);
+        }).catch(response => {
+            callback(response);
+        });
+    }
+
+    const callback = (response: any) => {
+        console.log(response);
+        setisSubmitting(false);
+        navigate('/dashboard');
     }
 
     return (
@@ -103,20 +125,20 @@ const ApplyLoan = () => {
                     <Grid columns={2}>
                         <GridRow>
                             <GridColumn>
-                                <Input name='loanAmount' placeholder={LOAN_AMOUNT} />
+                                <Input name='amount' placeholder={LOAN_AMOUNT} />
                             </GridColumn>
                             <GridColumn>
-                                <Input name='terms' placeholder={TERMS_IN_YEARS} />
+                                <Input name='term' placeholder={TERMS_IN_YEARS} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
                             <GridColumn width={12}>
                                 <label>{LOAN_USAGE}</label>
                                 {
-                                    config.loanUsage.map(item => (
+                                    config.category.map(item => (
                                         <Radio
                                             key={item.value}
-                                            name='usage'
+                                            name='loanCategory'
                                             label={item.label}
                                             value={item.value}
                                         />
@@ -313,6 +335,13 @@ const ApplyLoan = () => {
                         <GridRow>
                             <GridColumn>
                                 <Checkbox name='consent' label={COMMON.YES} />
+                            </GridColumn>
+                        </GridRow>
+                        <GridRow>
+                            <GridColumn width={16}>
+                                <TextArea
+                                    name='comments'
+                                    placeholder={'Comments here..'} />
                             </GridColumn>
                         </GridRow>
                         <GridRow>
