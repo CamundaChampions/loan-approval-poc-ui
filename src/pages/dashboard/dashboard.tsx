@@ -13,6 +13,7 @@ const Dashboard = () => {
     const userType = useSelector(getUserType);
     const user = useSelector(getUser);
     const [loanSummaryList, setLoanSummaryList] = useState<loanSummary[]>([]);
+    const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
     const handleClick = (action: string) => {
         switch (action) {
@@ -26,8 +27,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        axios.post("http://localhost:9090/api/v1/getdata", {
-        }, {
+        axios.get(`${baseUrl}/getdata`, {
             headers: {
                 'user-id': user
             }
@@ -37,7 +37,7 @@ const Dashboard = () => {
         }).catch(response => {
             console.log(response);
         });
-    }, []);
+    }, [user]);
 
     const isNonApplicantUser = () => userType === UserType.NonApplicant;
 
@@ -71,7 +71,7 @@ const Dashboard = () => {
                     </GridRow>
                 }
                 {
-                    loanSummaryList.length &&
+                    !!loanSummaryList.length &&
                     <GridRow>
                         <GridColumn>
                             <Table celled>

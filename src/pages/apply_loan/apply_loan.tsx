@@ -51,6 +51,7 @@ const {
 
 const ApplyLoan = () => {
 
+    const baseUrl = process.env.REACT_APP_API_BASE_URL;
     const user = useSelector(getUser);
     const navigate = useNavigate();
     const initialValues = {
@@ -94,7 +95,7 @@ const ApplyLoan = () => {
         console.log(JSON.stringify(values));
         setisSubmitting(true);
         const { loanCategory, amount, term, comments, reason } = values;
-        axios.post("http://localhost:9090/api/v1/loan", {
+        axios.post(`${baseUrl}/loan`, {
             loanCategory,
             amount,
             term,
