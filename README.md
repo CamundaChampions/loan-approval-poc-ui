@@ -1,6 +1,19 @@
+
+
 ## Getting Started
+### Install Node Js package
+
+Open [https://nodejs.org/en/download/prebuilt-installer/current] and download msi inst
 
 Install node in your machine
+
+### Install Visual Studio Code for editor
+Install Visual Studio Code for editor
+
+### Clone the project
+
+### Open project of visual studio code
+
 
 In the project directory, you can run:
 
