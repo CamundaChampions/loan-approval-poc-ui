@@ -22,7 +22,7 @@ export const LOAN_APPLICATION_FORM = {
     COUNTRY: 'Country',
     LOAN_AMOUNT: 'Loan Amount',
     EMPLOYMENT_INFORMATION: 'Employment Information',
-    PRESENT_EMPLOYER: 'resent Employer',
+    PRESENT_EMPLOYER: 'Present Employer',
     OCCUPATION: 'Occupation',
     INCOME: 'Gross monthly income',
     EXPERIENCE: 'Years of experience',
@@ -34,5 +34,6 @@ export const LOAN_APPLICATION_FORM = {
     CONCENT: 'Consent'
 }
 export const COMMON = {
-    YES: 'Yes'
+    YES: 'Yes',
+    REQUIRED: 'This field is required'
 }

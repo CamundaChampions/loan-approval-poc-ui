@@ -58,3 +58,11 @@ textarea {
   border-radius: 4px;
   resize: none;
 }
+
+.error {
+  color: #ff0000;
+}
+
+.ui.form .field {
+  margin: 0 !important;
+}
