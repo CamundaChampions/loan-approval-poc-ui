@@ -1,0 +1,56 @@
+.container {
+    margin: 0 15%;
+    background-color: var(--color-white);
+}
+
+.ui.grid {
+    margin: 0;
+}
+
+.ui.input {
+    width: 100%;
+}
+
+.ui.selection.dropdown {
+    width: 100%;
+}
+
+.ui.radio.checkbox {
+    padding-right: 1rem;
+}
+
+label {
+    color: var(--color-label);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.shadow_label {
+    color: var(--color-shadow-label);
+}
+
+.width_100 {
+    width: 100%;
+}
+
+.center {
+    text-align: center !important;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.error {
+    color: var(--color-red);
+}
+
+.ui.form .field {
+    margin: 0 !important;
+}

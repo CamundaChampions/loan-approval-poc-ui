@@ -1,9 +1,9 @@
 .header {
     padding: 15px 30px;
-    background-color: #009688;
+    background-color: var(--color-header);
 
     .gen_logo {
-        width: 80px!important;
+        width: 80px !important;
         cursor: pointer;
     }
 
@@ -24,25 +24,5 @@
             align-content: center;
             flex-direction: row-reverse;
         }
-
-        // .applicant_dropdown {
-        //     display: flex;
-        //     align-items: center;
-        //     justify-content: right;
-
-        //     &>.dropdown {
-        //         min-width: 140px;
-        //         background: #fff;
-        //         padding: 6px;
-        //         border-radius: 5px;
-
-        //         .icon {
-        //             position: absolute;
-        //             top: 50%;
-        //             right: 0;
-        //             transform: translate(-50%, -50%);
-        //         }
-        //     }
-        // }
     }
 }
