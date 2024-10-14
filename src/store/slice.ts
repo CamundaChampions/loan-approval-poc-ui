@@ -10,8 +10,7 @@ const loanSlice = createSlice({
     name: 'loan',
     initialState,
     reducers: {
-        setUserType(state, action: { payload: {userType: string, user: string} }) {
-            state.userType = action.payload.userType;
+        setUserType(state, action: { payload: {user: string|any} }) {
             state.user = action.payload.user;
         }
     }

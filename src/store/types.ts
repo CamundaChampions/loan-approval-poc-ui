@@ -8,9 +8,15 @@ export interface LoanState {
     user: string
 }
 
+export interface loanSummaryResponse {
+    allowToCreateLoan: boolean,
+    loanSummaryList: loanSummary[]
+}
+
 export interface loanSummary {
     loanApplicationId: string,
-    amount: string,
+    loanType: string,
     statusCode: string,
-    term: string
+    status: string,
+    amount: string
 }

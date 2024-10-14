@@ -2,17 +2,22 @@ import { useNavigate } from 'react-router-dom';
 import PageTitle from '../../components/page_title/page_title';
 import { Table, TableHeader, TableRow, TableHeaderCell, TableCell, Button, Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import { loanSummary, UserType } from '../../store/types';
+import { UserType, loanSummaryResponse } from '../../store/types';
 import { getUser, getUserType } from '../../store/selectors';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
+const dashboardResponseInitialValue: loanSummaryResponse = {
+    allowToCreateLoan: false,
+    loanSummaryList:[]
+};
 
 const Dashboard = () => {
 
     let navigate = useNavigate();
     const userType = useSelector(getUserType);
     const user = useSelector(getUser);
-    const [loanSummaryList, setLoanSummaryList] = useState<loanSummary[]>([]);
+    const [loanSummaryResponse, setLoanSummaryResponse] = useState<loanSummaryResponse>(dashboardResponseInitialValue);
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
     const handleClick = (action: string) => {
@@ -27,19 +32,17 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        axios.get(`${baseUrl}/getdata`, {
+        axios.get(`${baseUrl}/loan`, {
             headers: {
                 'user-id': user
             }
         }).then((response) => {
             console.log(response);
-            setLoanSummaryList(response?.data?.loanSummaryList || []);
+            setLoanSummaryResponse(response.data)
         }).catch(response => {
             console.log(response);
         });
     }, [user]);
-
-    const isNonApplicantUser = () => userType === UserType.NonApplicant;
 
     return (
         <div>
@@ -58,30 +61,32 @@ const Dashboard = () => {
                     </GridColumn>
                 </GridRow> */}
                 {
-                    !isNonApplicantUser() &&
-                    <GridRow columns={3}>
+                    loanSummaryResponse.allowToCreateLoan &&
+                    <GridRow columns={4}>
+                        <GridColumn>
+                        </GridColumn>
+                        <GridColumn>
+                        </GridColumn>
                         <GridColumn>
                         </GridColumn>
                         <GridColumn>
                             <Button primary className='width_100'
-                                onClick={() => handleClick('apply')} >Apply Loan</Button>
+                                onClick={() => handleClick('apply')} >Click to Apply Loan</Button>
                         </GridColumn>
-                        <GridColumn>
-                        </GridColumn>
+                        
                     </GridRow>
                 }
-                {
-                    !!loanSummaryList.length &&
+            
                     <GridRow>
                         <GridColumn>
                             <Table celled>
                                 <TableHeader>
                                     <TableRow>
                                         <TableHeaderCell>
-                                            Sr. No.
+                                            Loan Request Id
                                         </TableHeaderCell>
                                         <TableHeaderCell>
-                                            Loan ID
+                                            Loan Category
                                         </TableHeaderCell>
                                         <TableHeaderCell>
                                             Amount
@@ -101,22 +106,19 @@ const Dashboard = () => {
                                 </TableHeader>
                                 <tbody>
                                     {
-                                        loanSummaryList.map((loan) => (
+                                        loanSummaryResponse?.loanSummaryList.map((loan) => (
                                             <TableRow>
                                                 <TableCell>
-                                                    {''}
+                                                    {loan.loanApplicationId}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.loanApplicationId}
+                                                    {loan.loanType}
                                                 </TableCell>
                                                 <TableCell>
                                                     {loan.amount}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.term}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {loan.statusCode}
+                                                    {loan.status}
                                                 </TableCell>
                                                 <TableCell>
                                                     {''}
@@ -133,7 +135,7 @@ const Dashboard = () => {
                             </Table>
                         </GridColumn>
                     </GridRow>
-                }
+                
             </Grid>
             {/* <Button onClick={handleClick} >Apply Loan</Button> */}
         </div>

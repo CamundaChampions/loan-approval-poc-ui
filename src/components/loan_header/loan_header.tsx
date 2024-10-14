@@ -1,5 +1,5 @@
 import Logo from '../../assets/img/genpact_logo.png';
-import { Grid, GridRow, GridColumn, Image, Header, Dropdown } from 'semantic-ui-react';
+import { Grid, GridRow, GridColumn, Image, Header, Dropdown, DropdownProps } from 'semantic-ui-react';
 import './loan_header.scss';
 import { useNavigate } from 'react-router-dom';
 import { SyntheticEvent, useEffect, useState } from 'react';
@@ -13,44 +13,43 @@ const LoanHeader = () => {
     const dispatch = useAppDispatch();
     const applicantsList = [
         {
-            key: "Applicant 1",
+            key: "applicant_1",
             text: "Applicant 1",
             value: "Applicant 1"
         },
         {
-            key: "Applicant 2",
+            key: "applicant_2",
             text: "Applicant 2",
             value: "Applicant 2"
         },
         {
-            key: "Financial Manager",
+            key: "financial_assessment_manager",
             text: "Financial Manager",
             value: "Financial Manager"
         },
         {
-            key: "Manager Approval",
+            key: "risk_assessment_manager",
             text: "Manager Approval",
             value: "Manager Approval"
         }
     ];
     const [selectedOption, setSelectedOption] = useState(applicantsList[0].value);
     useEffect(() => {
-        dispatch(setUserType({ userType: UserType.Applicant, user: applicantsList[0].value }));
+        dispatch(setUserType({ user: applicantsList[0].key }));
     }, [])
 
     const handleClick = () => {
         navigate('/dashboard');
     }
 
-    const handleChange = (event: SyntheticEvent) => {
+    const handleChange = (event: SyntheticEvent, data: DropdownProps) => {
         // @ts-ignore
-        const value: string = event?.target?.innerText;
-        setSelectedOption(value);
-        if (value.includes('Applicant')) {
-            dispatch(setUserType({ userType: UserType.Applicant, user: value }));
-        } else {
-            dispatch(setUserType({ userType: UserType.NonApplicant, user: value }));
-        }
+        const selectedValue: string = applicantsList.filter( value => value.text === data.value).at(0)?.value;
+
+        const selectedUser: string|any = applicantsList.filter( value => value.text === data.value).at(0)?.key;
+
+        setSelectedOption(selectedValue);
+        dispatch(setUserType({ user: selectedUser }));
     };
 
     return (
