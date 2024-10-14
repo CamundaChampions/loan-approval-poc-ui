@@ -83,6 +83,14 @@ const ApplyLoan = () => {
         navigate('/dashboard');
     }
 
+    const handleScroll = (errors: any) => {
+        const firstErrorField = Object.keys(errors)[0];
+        const element = document.querySelector(`[name="${firstErrorField}"]`);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className='loan-form'>
             <PageTitle title={LOAN_APPLICATION_FORM_TITLE} />
@@ -344,7 +352,11 @@ const ApplyLoan = () => {
                             </GridRow>
                             <GridRow>
                                 <GridColumn width={16} textAlign='center'>
-                                    <SubmitButton loading={isSubmitting} primary>{SEND_BTN}</SubmitButton>
+                                    <SubmitButton
+                                        onClick={() => handleScroll(errors)}
+                                        loading={isSubmitting}
+                                        primary>{SEND_BTN}
+                                    </SubmitButton>
                                 </GridColumn>
                             </GridRow>
                         </Grid>
