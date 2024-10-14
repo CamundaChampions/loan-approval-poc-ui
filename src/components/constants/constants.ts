@@ -21,6 +21,7 @@ export const LOAN_APPLICATION_FORM = {
     ZIP_CODE: 'Postal / Zip Code',
     COUNTRY: 'Country',
     LOAN_AMOUNT: 'Loan Amount',
+    REASON: 'Reason',
     EMPLOYMENT_INFORMATION: 'Employment Information',
     PRESENT_EMPLOYER: 'Present Employer',
     OCCUPATION: 'Occupation',
@@ -29,7 +30,7 @@ export const LOAN_APPLICATION_FORM = {
     BANK_REFERENCE: 'Bank References',
     INSTITUTION_NAME: 'Institution Name',
     ACCOUNT_TYPE: 'Account Type',
-    CONCENT_MESSAGE: 'I hereby agree that the information given is true, accurate and complete as of the date of this application submission.',
+    CONCENT_MESSAGE: 'I hereby authorize XYZ Demo Finance Pvt ltd to receive my credit information from CIBIL (Credit Bureau). I hereby unconditionally consent to and instruct Credit Bureau to provide my credit information to XYZ Demo Finance Pvt Ltd.',
     SEND_BTN: 'Send Application Now',
     CONCENT: 'Consent'
 }

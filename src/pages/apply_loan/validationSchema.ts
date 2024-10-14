@@ -34,5 +34,6 @@ export const initialValues = {
     accountType: '',
     referenceAccountNumber: '',
     consent: false,
+    reason: '',
     comments: ''
 }

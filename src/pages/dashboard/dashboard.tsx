@@ -92,9 +92,6 @@ const Dashboard = () => {
                                             Amount
                                         </TableHeaderCell>
                                         <TableHeaderCell>
-                                            Term
-                                        </TableHeaderCell>
-                                        <TableHeaderCell>
                                             Status
                                         </TableHeaderCell>
                                         <TableHeaderCell>
@@ -121,13 +118,13 @@ const Dashboard = () => {
                                                     {loan.status}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {''}
+                                                    {loan.reason}
                                                 </TableCell>
-                                                {/* <TableCell className='center'>
+                                                <TableCell className='center'>
                                                     <Button primary onClick={() => handleClick('view')}>
-                                                        {loan.buttonLabel}
+                                                        View and Approve
                                                     </Button>
-                                                </TableCell> */}
+                                                </TableCell>
                                             </TableRow>
                                         ))
                                     }
