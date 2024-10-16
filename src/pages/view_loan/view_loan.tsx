@@ -1,5 +1,5 @@
 import './view_loan.scss';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import {
     AccordionTitle,
     AccordionContent,
@@ -8,6 +8,7 @@ import {
     Grid,
     GridRow,
     GridColumn,
+    Button,
 } from 'semantic-ui-react'
 import PageTitle from '../../components/page_title/page_title';
 import { LOAN_APPLICATION_FORM } from '../../components/constants/constants';
@@ -16,6 +17,11 @@ import ContactInformation from '../../components/loan_components/contact_informa
 import EmploymentInformation from '../../components/loan_components/employment_information';
 import LoanInfo from '../../components/loan_components/loan_info';
 import BankReference from '../../components/loan_components/bank_reference';
+import { useSelector } from 'react-redux';
+import { getLoanId, getUser } from '../../store/selectors';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { loanSummary } from '../../store/types';
 
 const {
     CONTACT_INFORMATION,
@@ -26,7 +32,32 @@ const {
 } = LOAN_APPLICATION_FORM
 const ViewLoan = () => {
 
+    let navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(-1);
+    const loanId = useSelector(getLoanId);
+    const user = useSelector(getUser);
+    const baseUrl = process.env.REACT_APP_API_BASE_URL;
+    const [loanSummary, setLoanSummary] = useState<loanSummary>();
+
+    useEffect(() => {
+        if (!loanId) {
+            navigate('/dashboard');
+        }
+
+        // api call for getting data
+        axios.post(`${baseUrl}/getdata`, {
+            loanApplicationId: loanId
+        }, {
+            headers: {
+                'user-id': user
+            }
+        }).then((response) => {
+            console.log(response);
+            setLoanSummary(response?.data);
+        }).catch(response => {
+            console.log(response);
+        });
+    }, []);
 
     const handleClick = (e: SyntheticEvent, titleProps: any) => {
         const { index } = titleProps;
@@ -34,11 +65,33 @@ const ViewLoan = () => {
         setActiveIndex(newIndex);
     }
 
+    // cancal loan
+    const cancelLoan = () => {
+        axios.post(`${baseUrl}/postdata`, {
+            loanApplicationId: loanId
+        }, {
+            headers: {
+                'user-id': user
+            }
+        }).then((response) => {
+            console.log(response);
+            console.log('Your loan application cancelled!');
+        }).catch(response => {
+            console.log(response);
+        });
+    }
+
     return (
         <div>
             <PageTitle title={LOAN_APPLICATION_FORM_TITLE} />
             <div className='viewloan' >
-                <LoanInfo />
+                {
+                    loanSummary &&
+                    <LoanInfo
+                        amount={loanSummary?.amount}
+                        loanCategory={loanSummary.amount}
+                        term={loanSummary?.term} />
+                }
                 <Accordion>
                     <AccordionTitle
                         active={activeIndex === 0}
@@ -107,6 +160,18 @@ const ViewLoan = () => {
                         </div>
                     </AccordionContent>
                 </Accordion>
+                <Grid>
+                    <GridRow columns={3}>
+                        <GridColumn>
+                        </GridColumn>
+                        <GridColumn>
+                        </GridColumn>
+                        <GridColumn>
+                            <Button primary className='width_100'
+                                onClick={cancelLoan} >Cancel Loan</Button>
+                        </GridColumn>
+                    </GridRow>
+                </Grid>
             </div>
         </div>
     )

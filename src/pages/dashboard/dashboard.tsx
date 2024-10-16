@@ -6,9 +6,12 @@ import { loanSummary, UserType } from '../../store/types';
 import { getUser, getUserType } from '../../store/selectors';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAppDispatch } from '../../store/store';
+import { setLoanApplicationId } from '../../store/slice';
 
 const Dashboard = () => {
 
+    const dispatch = useAppDispatch();
     let navigate = useNavigate();
     const userType = useSelector(getUserType);
     const user = useSelector(getUser);
@@ -21,7 +24,7 @@ const Dashboard = () => {
                 navigate('/apply_loan');
                 break;
             default:
-                navigate('/view_loan')
+                navigate('/view_loan');
                 break;
         }
     }
@@ -40,6 +43,11 @@ const Dashboard = () => {
     }, [user]);
 
     const isNonApplicantUser = () => userType === UserType.NonApplicant;
+
+    const handleRowClick = (loan: loanSummary) => {
+        dispatch(setLoanApplicationId({ loanId: loan.loanApplicationId }));
+        navigate('/view_loan');
+    }
 
     return (
         <div>
@@ -74,7 +82,7 @@ const Dashboard = () => {
                     !!loanSummaryList.length &&
                     <GridRow>
                         <GridColumn>
-                            <Table celled>
+                            <Table celled selectable>
                                 <TableHeader>
                                     <TableRow>
                                         <TableHeaderCell>
@@ -102,7 +110,7 @@ const Dashboard = () => {
                                 <tbody>
                                     {
                                         loanSummaryList.map((loan) => (
-                                            <TableRow>
+                                            <TableRow onClick={() => handleRowClick(loan)}>
                                                 <TableCell>
                                                     {''}
                                                 </TableCell>

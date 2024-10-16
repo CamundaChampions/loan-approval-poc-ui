@@ -5,12 +5,14 @@ export enum UserType {
 
 export interface LoanState {
     userType: string;
-    user: string
+    user: string;
+    loanApplicationId: string;
 }
 
 export interface loanSummary {
     loanApplicationId: string,
     amount: string,
     statusCode: string,
-    term: string
+    term: string,
+    loanCategory?: string
 }

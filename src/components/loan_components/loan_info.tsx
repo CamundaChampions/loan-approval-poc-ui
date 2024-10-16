@@ -6,7 +6,14 @@ const {
     LOAN_USAGE
 } = LOAN_APPLICATION_FORM;
 
-const LoanInfo = () => {
+interface LoanInfo {
+    amount: string,
+    term: string,
+    loanCategory: string
+}
+
+const LoanInfo = (props: LoanInfo) => {
+    const { amount, term, loanCategory } = props;
     return (
         <div className='accordion_content' >
             <Grid columns={4}>
@@ -15,13 +22,13 @@ const LoanInfo = () => {
                         <label className='shadow_label'>Desired Loan Amount Rs.</label>
                     </GridColumn>
                     <GridColumn>
-                        {'RS 5,000.00/-'}
+                        RS{amount}/-
                     </GridColumn>
                     <GridColumn>
                         <label className='shadow_label'>{TERMS_IN_YEARS}</label>
                     </GridColumn>
                     <GridColumn>
-                        {'5'}
+                        {term}
                     </GridColumn>
                 </GridRow>
                 <GridRow>
@@ -29,7 +36,7 @@ const LoanInfo = () => {
                         <label className='shadow_label'>{LOAN_USAGE}</label>
                     </GridColumn>
                     <GridColumn>
-                        {'House Buying '}
+                        {loanCategory}
                     </GridColumn>
                 </GridRow>
             </Grid>
