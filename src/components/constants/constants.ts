@@ -1,5 +1,6 @@
 export const LOAN_APPLICATION_FORM = {
     LOAN_APPLICATION_FORM_TITLE: 'Loan Application Form',
+    LOAN_APPLICATION_SUMMARY: 'Loan Application Summary',
     TERMS_IN_YEARS: 'Terms(In yrs)',
     LOAN_USAGE: 'Loan will be used for',
     SECURITIES: 'Securities',

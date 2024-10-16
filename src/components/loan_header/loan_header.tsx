@@ -6,6 +6,9 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../store/store';
 import { setUserType } from '../../store/slice';
 import { UserType } from '../../store/types';
+import { isDashboardPage } from '../../helper/helper';
+import { useSelector } from 'react-redux';
+import { getUser } from '../../store/selectors';
 
 const LoanHeader = () => {
 
@@ -34,6 +37,7 @@ const LoanHeader = () => {
         }
     ];
     const [selectedOption, setSelectedOption] = useState(applicantsList[0].value);
+    const user = useSelector(getUser);
     useEffect(() => {
         dispatch(setUserType({ user: applicantsList[0].key }));
     }, [])
@@ -52,6 +56,10 @@ const LoanHeader = () => {
         dispatch(setUserType({ user: selectedUser }));
     };
 
+    const _isDashboardPage = () => {
+        return isDashboardPage(window.location.href);
+    }
+
     return (
         <div className='header'>
             <Grid columns={3}>
@@ -60,14 +68,16 @@ const LoanHeader = () => {
                         <Image onClick={handleClick} className='gen_logo' src={Logo} alt={'Genpact Logo'} size='small' />
                     </GridColumn>
                     <GridColumn className='header_heading'>
-                        <Header as='h1'>Camunda POC</Header>
+                        <Header as='h1'>Camunda 8 Loan Provider Ltd.</Header>
                     </GridColumn>
                     <GridColumn className='applicant_dropdown'>
-                        <Dropdown
-                            onChange={handleChange}
-                            name={'dropdown'}
-                            value={selectedOption}
-                            options={applicantsList} />
+                        {
+                            _isDashboardPage() ? <Dropdown
+                                onChange={handleChange}
+                                name={'dropdown'}
+                                value={selectedOption}
+                                options={applicantsList} /> : user
+                        }
                     </GridColumn>
                 </GridRow>
             </Grid>

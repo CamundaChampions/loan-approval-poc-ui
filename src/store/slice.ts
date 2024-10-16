@@ -3,7 +3,8 @@ import { LoanState } from './types';
 
 const initialState: LoanState = {
     userType: '',
-    user: ''
+    user: '',
+    loanApplicationId: ''
 }
 
 const loanSlice = createSlice({
@@ -12,12 +13,16 @@ const loanSlice = createSlice({
     reducers: {
         setUserType(state, action: { payload: {user: string|any} }) {
             state.user = action.payload.user;
+        },
+        setLoanApplicationId(state, action: { payload: {loanId: string} }) {
+            state.loanApplicationId = action.payload.loanId;
         }
     }
 });
 
 export const {
-    setUserType
+    setUserType,
+    setLoanApplicationId
 } = loanSlice.actions;
 
 export default loanSlice.reducer;

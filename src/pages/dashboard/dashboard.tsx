@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import PageTitle from '../../components/page_title/page_title';
 import { Table, TableHeader, TableRow, TableHeaderCell, TableCell, Button, Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import { UserType, loanSummaryResponse } from '../../store/types';
+import { UserType, loanSummary, loanSummaryResponse } from '../../store/types';
 import { getUser, getUserType } from '../../store/selectors';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAppDispatch } from '../../store/store';
+import { setLoanApplicationId } from '../../store/slice';
 
 const dashboardResponseInitialValue: loanSummaryResponse = {
     allowToCreateLoan: false,
@@ -14,6 +16,7 @@ const dashboardResponseInitialValue: loanSummaryResponse = {
 
 const Dashboard = () => {
 
+    const dispatch = useAppDispatch();
     let navigate = useNavigate();
     const userType = useSelector(getUserType);
     const user = useSelector(getUser);
@@ -26,11 +29,16 @@ const Dashboard = () => {
                 navigate('/apply_loan');
                 break;
             default:
-                navigate('/view_loan')
+                navigate('/view_loan');
                 break;
         }
     }
 
+    const handleRowClick = (loan: loanSummary) => {
+        dispatch(setLoanApplicationId({ loanId: loan.loanApplicationId }));
+        navigate('/view_loan');
+    }
+    
     useEffect(() => {
         axios.get(`${baseUrl}/loan`, {
             headers: {
@@ -79,7 +87,7 @@ const Dashboard = () => {
             
                     <GridRow>
                         <GridColumn>
-                            <Table celled>
+                            <Table celled selectable>
                                 <TableHeader>
                                     <TableRow>
                                         <TableHeaderCell>
@@ -104,7 +112,7 @@ const Dashboard = () => {
                                 <tbody>
                                     {
                                         loanSummaryResponse?.loanSummaryList.map((loan) => (
-                                            <TableRow>
+                                            <TableRow onClick={() => handleRowClick(loan)}>
                                                 <TableCell>
                                                     {loan.loanApplicationId}
                                                 </TableCell>
