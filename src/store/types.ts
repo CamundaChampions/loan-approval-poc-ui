@@ -5,12 +5,18 @@ export enum UserType {
 
 export interface LoanState {
     userType: string;
-    user: string
+    user: string;
+    loanApplicationId: string;
 }
 
 export interface loanSummaryResponse {
     allowToCreateLoan: boolean,
     loanSummaryList: loanSummary[]
+}
+
+export interface loanSummaryData extends loanSummary {
+    possibleAction: string[],
+    
 }
 
 export interface loanSummary {
@@ -19,5 +25,6 @@ export interface loanSummary {
     statusCode: string,
     status: string,
     reason: string,
-    amount: string
+    amount: string,
+    term: string
 }
