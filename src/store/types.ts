@@ -13,6 +13,8 @@ export interface loanSummary {
     loanApplicationId: string,
     amount: string,
     statusCode: string,
+    status: string,
     term: string,
     loanCategory?: string
+    reason: string
 }

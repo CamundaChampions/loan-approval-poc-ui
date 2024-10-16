@@ -17,37 +17,12 @@ import { initialValues, validationSchema } from './validationSchema';
 const {
     TERMS_IN_YEARS,
     LOAN_USAGE,
-    ACCOUNT_NUMBER,
-    ADDRESS,
-    BALANCE,
-    BANK_NAME,
-    CITY,
-    COLLATERAL_TYPE,
-    CONTACT_INFORMATION,
-    COUNTRY,
-    DOB,
-    EMAIL,
-    FIRST_NAME,
-    LAST_NAME,
     LOAN_APPLICATION_FORM_TITLE,
-    MARITAL_STTAUS,
-    PHONE,
-    SECURITIES,
-    STATE,
-    STREET_ADDRESS,
-    ZIP_CODE,
     LOAN_AMOUNT,
     CONCENT_MESSAGE,
     SEND_BTN,
     CONCENT,
-    ACCOUNT_TYPE,
-    BANK_REFERENCE,
-    EMPLOYMENT_INFORMATION,
-    EXPERIENCE,
-    INCOME,
-    INSTITUTION_NAME,
-    OCCUPATION,
-    PRESENT_EMPLOYER
+    REASON
 } = LOAN_APPLICATION_FORM;
 
 const ApplyLoan = () => {
@@ -132,7 +107,7 @@ const ApplyLoan = () => {
                                     }
                                 </GridColumn>
                             </GridRow>
-                            <GridRow>
+                            {/* <GridRow>
                                 <GridColumn>
                                     <SectionTitle title={SECURITIES} />
                                 </GridColumn>
@@ -326,6 +301,14 @@ const ApplyLoan = () => {
                                     <Input
                                         name='referenceAccountNumber'
                                         placeholder={ACCOUNT_NUMBER} />
+                                </GridColumn>
+                            </GridRow> */}
+                            <GridRow>
+                                <GridColumn width={16}>
+                                    <label>{REASON}</label>
+                                    <Input
+                                        name='reason'
+                                        placeholder={REASON} />
                                 </GridColumn>
                             </GridRow>
                             <GridRow>

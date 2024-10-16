@@ -16,6 +16,7 @@ const Dashboard = () => {
     const userType = useSelector(getUserType);
     const user = useSelector(getUser);
     const [loanSummaryList, setLoanSummaryList] = useState<loanSummary[]>([]);
+    const [allowToCreateLoan, setAllowToCreateLoan] = useState<boolean>(false);
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
     const handleClick = (action: string) => {
@@ -30,13 +31,14 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        axios.get(`${baseUrl}/getdata`, {
+        axios.get(`${baseUrl}/loan`, {
             headers: {
                 'user-id': user
             }
         }).then((response) => {
             console.log(response);
             setLoanSummaryList(response?.data?.loanSummaryList || []);
+            setAllowToCreateLoan(response?.data?.allowToCreateLoan);
         }).catch(response => {
             console.log(response);
         });
@@ -66,7 +68,7 @@ const Dashboard = () => {
                     </GridColumn>
                 </GridRow> */}
                 {
-                    !isNonApplicantUser() &&
+                    allowToCreateLoan &&
                     <GridRow columns={3}>
                         <GridColumn>
                         </GridColumn>
@@ -86,16 +88,13 @@ const Dashboard = () => {
                                 <TableHeader>
                                     <TableRow>
                                         <TableHeaderCell>
-                                            Sr. No.
+                                            Loan Request Id
                                         </TableHeaderCell>
                                         <TableHeaderCell>
-                                            Loan ID
+                                            Loan Category
                                         </TableHeaderCell>
                                         <TableHeaderCell>
                                             Amount
-                                        </TableHeaderCell>
-                                        <TableHeaderCell>
-                                            Term
                                         </TableHeaderCell>
                                         <TableHeaderCell>
                                             Status
@@ -112,26 +111,23 @@ const Dashboard = () => {
                                         loanSummaryList.map((loan) => (
                                             <TableRow onClick={() => handleRowClick(loan)}>
                                                 <TableCell>
-                                                    {''}
+                                                    {loan.loanApplicationId}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.loanApplicationId}
+                                                    {loan.loanCategory}
                                                 </TableCell>
                                                 <TableCell>
                                                     {loan.amount}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.term}
+                                                    {loan.status}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {loan.statusCode}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {''}
+                                                    {loan.reason}
                                                 </TableCell>
                                                 {/* <TableCell className='center'>
                                                     <Button primary onClick={() => handleClick('view')}>
-                                                        {loan.buttonLabel}
+                                                        {'View and Approve'}
                                                     </Button>
                                                 </TableCell> */}
                                             </TableRow>

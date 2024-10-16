@@ -16,22 +16,22 @@ const LoanHeader = () => {
     const dispatch = useAppDispatch();
     const applicantsList = [
         {
-            key: "Applicant 1",
+            key: "applicant_1",
             text: "Applicant 1",
             value: "Applicant 1"
         },
         {
-            key: "Applicant 2",
+            key: "applicant_2",
             text: "Applicant 2",
             value: "Applicant 2"
         },
         {
-            key: "Financial Manager",
+            key: "financial_assessment_manager",
             text: "Financial Manager",
             value: "Financial Manager"
         },
         {
-            key: "Manager Approval",
+            key: "risk_assessment_manager",
             text: "Manager Approval",
             value: "Manager Approval"
         }

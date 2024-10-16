@@ -92,7 +92,7 @@ const ViewLoan = () => {
                         loanCategory={loanSummary.amount}
                         term={loanSummary?.term} />
                 }
-                <Accordion>
+                {/* <Accordion>
                     <AccordionTitle
                         active={activeIndex === 0}
                         index={0}
@@ -159,7 +159,7 @@ const ViewLoan = () => {
                             </Grid>
                         </div>
                     </AccordionContent>
-                </Accordion>
+                </Accordion> */}
                 <Grid>
                     <GridRow columns={3}>
                         <GridColumn>
