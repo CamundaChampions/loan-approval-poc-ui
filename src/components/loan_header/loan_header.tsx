@@ -6,6 +6,9 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../store/store';
 import { setUserType } from '../../store/slice';
 import { UserType } from '../../store/types';
+import { isDashboardPage } from '../../helper/helper';
+import { useSelector } from 'react-redux';
+import { getUser } from '../../store/selectors';
 
 const LoanHeader = () => {
 
@@ -34,6 +37,8 @@ const LoanHeader = () => {
         }
     ];
     const [selectedOption, setSelectedOption] = useState(applicantsList[0].value);
+    const user = useSelector(getUser);
+
     useEffect(() => {
         dispatch(setUserType({ userType: UserType.Applicant, user: applicantsList[0].value }));
     }, [])
@@ -53,6 +58,10 @@ const LoanHeader = () => {
         }
     };
 
+    const _isDashboardPage = () => {
+        return isDashboardPage(window.location.href);
+    }
+
     return (
         <div className='header'>
             <Grid columns={3}>
@@ -64,11 +73,13 @@ const LoanHeader = () => {
                         <Header as='h1'>Camunda POC</Header>
                     </GridColumn>
                     <GridColumn className='applicant_dropdown'>
-                        <Dropdown
-                            onChange={handleChange}
-                            name={'dropdown'}
-                            value={selectedOption}
-                            options={applicantsList} />
+                        {
+                            _isDashboardPage() ? <Dropdown
+                                onChange={handleChange}
+                                name={'dropdown'}
+                                value={selectedOption}
+                                options={applicantsList} /> : user
+                        }
                     </GridColumn>
                 </GridRow>
             </Grid>
