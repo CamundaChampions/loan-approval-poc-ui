@@ -70,8 +70,23 @@ const ViewLoan = () => {
         navigate('/dashboard');
     }
 
+    const acknowledgeMissingDocProvided = () => {
+        axios.post(`${baseUrl}/loan/${loanId}/doc/re-assessment`
+            , {
+            headers: {
+                'user-id': user
+            }
+        }).then((response) => {
+            console.log(response);
+            console.log('Your loan application {}!', 'action');
+            navigate('/dashboard');
+        }).catch(response => {
+            console.log(response);
+        });
+    }
+
     const acknowledgeCorrection = () => {
-        axios.post(`${baseUrl}/loan/${loanId}/acknowledge`
+        axios.post(`${baseUrl}/loan/${loanId}/doc/update-details`
             , {
             headers: {
                 'user-id': user
@@ -147,14 +162,12 @@ const ViewLoan = () => {
                 
                 
             <Grid>
-                    <GridRow columns={6}>
+                    <GridRow columns={5}>
                         <GridColumn>
                             { loanSummary?.possibleActivities?.includes('CAN_CANCEL') && 
                             <Button primary className='width_100'
                                 onClick={cancelLoan} >Cancel Loan</Button>
                             }
-                        </GridColumn>
-                        <GridColumn>
                         </GridColumn>
                         <GridColumn>
                         </GridColumn>
@@ -175,6 +188,10 @@ const ViewLoan = () => {
                             { loanSummary?.possibleActivities?.includes('CAN_ACKNOWLEDGE_CORRECTION') && 
                             <Button primary className='width_100'
                                 onClick={acknowledgeCorrection}  >Acknowledge Correction</Button>
+                            }
+                            { loanSummary?.possibleActivities?.includes('CAN_ACKNOWLEDGE_DOC_PROVIDED') && 
+                            <Button primary className='width_100'
+                                onClick={acknowledgeMissingDocProvided}  > I have provided missing document</Button>
                             }
                         </GridColumn>
                     </GridRow>
