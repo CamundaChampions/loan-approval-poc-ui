@@ -324,6 +324,9 @@ const ApplyLoan = () => {
                             <GridRow>
                                 <GridColumn>
                                     <Checkbox name='consent' label={COMMON.YES} />
+                                    {
+                                        touched.consent && errors.consent ? <ValidationMsg message={errors.consent} /> : null
+                                    }
                                 </GridColumn>
                             </GridRow>
                             <GridRow>

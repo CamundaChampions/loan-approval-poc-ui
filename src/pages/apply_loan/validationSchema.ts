@@ -3,7 +3,8 @@ import { COMMON } from "../../components/constants/constants";
 
 export const validationSchema = Yup.object({
     amount: Yup.string().required(COMMON.REQUIRED),
-    term: Yup.string().required(COMMON.REQUIRED)
+    term: Yup.string().required(COMMON.REQUIRED),
+    consent: Yup.boolean().oneOf([true], 'Please accept the terms of service')
 });
 
 export const initialValues = {
