@@ -14,7 +14,7 @@ const Dashboard = () => {
     const dispatch = useAppDispatch();
     let navigate = useNavigate();
     const userType = useSelector(getUserType);
-    const user = useSelector(getUser);
+    const { userId } = useSelector(getUser);
     const [loanSummaryList, setLoanSummaryList] = useState<loanSummary[]>([]);
     const [allowToCreateLoan, setAllowToCreateLoan] = useState<boolean>(false);
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -33,7 +33,7 @@ const Dashboard = () => {
     useEffect(() => {
         axios.get(`${baseUrl}/loan`, {
             headers: {
-                'user-id': user
+                'user-id': userId
             }
         }).then((response) => {
             console.log(response);
@@ -42,9 +42,7 @@ const Dashboard = () => {
         }).catch(response => {
             console.log(response);
         });
-    }, [user]);
-
-    const isNonApplicantUser = () => userType === UserType.NonApplicant;
+    }, [userId]);
 
     const handleRowClick = (loan: loanSummary) => {
         dispatch(setLoanApplicationId({ loanId: loan.loanApplicationId }));

@@ -6,6 +6,7 @@ export enum UserType {
 export interface LoanState {
     userType: string;
     user: string;
+    userId: string;
     loanApplicationId: string;
 }
 

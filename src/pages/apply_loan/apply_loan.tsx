@@ -1,6 +1,6 @@
 import './apply_loan.scss';
 import { Formik } from 'formik';
-import { Form, Input, Select, Radio, Checkbox, SubmitButton, TextArea } from 'formik-semantic-ui-react';
+import { Form, Input, Radio, Checkbox, SubmitButton, TextArea } from 'formik-semantic-ui-react';
 import { Grid, GridRow, GridColumn } from 'semantic-ui-react';
 import { useState } from 'react';
 import PageTitle from '../../components/page_title/page_title';
@@ -28,7 +28,7 @@ const {
 const ApplyLoan = () => {
 
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
-    const user = useSelector(getUser);
+    const { userId } = useSelector(getUser);
     const navigate = useNavigate();
     const [isSubmitting, setisSubmitting] = useState(false);
 
@@ -44,7 +44,7 @@ const ApplyLoan = () => {
             reason
         }, {
             headers: {
-                'user-id': user
+                'user-id': userId
             }
         }).then((response) => {
             callback(response);

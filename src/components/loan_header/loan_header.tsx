@@ -18,43 +18,49 @@ const LoanHeader = () => {
         {
             key: "applicant_1",
             text: "Applicant 1",
-            value: "Applicant 1"
+            value: "applicant_1"
         },
         {
             key: "applicant_2",
             text: "Applicant 2",
-            value: "Applicant 2"
+            value: "applicant_2"
         },
         {
             key: "financial_assessment_manager",
             text: "Financial Manager",
-            value: "Financial Manager"
+            value: "financial_assessment_manager"
         },
         {
             key: "risk_assessment_manager",
             text: "Manager Approval",
-            value: "Manager Approval"
+            value: "risk_assessment_manager"
         }
     ];
-    const [selectedOption, setSelectedOption] = useState(applicantsList[0].value);
-    const user = useSelector(getUser);
+    const [selectedOption, setSelectedOption] = useState(applicantsList[0]);
+    const { user } = useSelector(getUser);
 
     useEffect(() => {
-        dispatch(setUserType({ userType: UserType.Applicant, user: applicantsList[0].value }));
+        dispatch(setUserType({
+            userType: UserType.Applicant,
+            user: applicantsList[0].text,
+            userId: applicantsList[0].value
+        }));
     }, [])
 
     const handleClick = () => {
         navigate('/dashboard');
     }
 
-    const handleChange = (event: SyntheticEvent) => {
+    const handleChange = (event: SyntheticEvent, data: any) => {
         // @ts-ignore
-        const value: string = event?.target?.innerText;
-        setSelectedOption(value);
+        const text: string = event?.target?.innerText;
+        // @ts-ignore
+        const value = data.value;
+        setSelectedOption({ key: value, text, value });
         if (value.includes('Applicant')) {
-            dispatch(setUserType({ userType: UserType.Applicant, user: value }));
+            dispatch(setUserType({ userType: UserType.Applicant, user: text, userId: value }));
         } else {
-            dispatch(setUserType({ userType: UserType.NonApplicant, user: value }));
+            dispatch(setUserType({ userType: UserType.NonApplicant, user: text, userId: value }));
         }
     };
 
@@ -75,9 +81,10 @@ const LoanHeader = () => {
                     <GridColumn className='applicant_dropdown'>
                         {
                             _isDashboardPage() ? <Dropdown
-                                onChange={handleChange}
+                                onChange={(e, data) => handleChange(e, data)}
                                 name={'dropdown'}
-                                value={selectedOption}
+                                value={selectedOption.key}
+                                text={selectedOption.text}
                                 options={applicantsList} /> : user
                         }
                     </GridColumn>

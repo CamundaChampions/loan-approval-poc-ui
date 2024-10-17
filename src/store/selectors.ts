@@ -5,7 +5,10 @@ export const getUserType = (state: RootState) => {
 }
 
 export const getUser = (state: RootState) => {
-    return state.loan.user;
+    return {
+        user: state.loan.user,
+        userId: state.loan.userId
+    }
 }
 
 export const getLoanId = (state: RootState) => {

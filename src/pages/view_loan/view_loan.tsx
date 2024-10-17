@@ -22,6 +22,7 @@ import { getLoanId, getUser } from '../../store/selectors';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { loanSummary } from '../../store/types';
+import { userInfo } from 'os';
 
 const {
     CONTACT_INFORMATION,
@@ -35,7 +36,7 @@ const ViewLoan = () => {
     let navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(-1);
     const loanId = useSelector(getLoanId);
-    const user = useSelector(getUser);
+    const { userId } = useSelector(getUser);
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
     const [loanSummary, setLoanSummary] = useState<loanSummary>();
 
@@ -49,7 +50,7 @@ const ViewLoan = () => {
             loanApplicationId: loanId
         }, {
             headers: {
-                'user-id': user
+                'user-id': userId
             }
         }).then((response) => {
             console.log(response);
@@ -71,7 +72,7 @@ const ViewLoan = () => {
             loanApplicationId: loanId
         }, {
             headers: {
-                'user-id': user
+                'user-id': userId
             }
         }).then((response) => {
             console.log(response);
