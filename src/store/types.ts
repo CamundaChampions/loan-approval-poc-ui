@@ -15,7 +15,7 @@ export interface loanSummaryResponse {
 }
 
 export interface loanSummaryData extends loanSummary {
-    possibleAction: string[],
+    possibleActivities: string[],
     
 }
 

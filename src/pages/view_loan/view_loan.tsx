@@ -22,6 +22,8 @@ import { getLoanId, getUser } from '../../store/selectors';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { loanSummary, loanSummaryData } from '../../store/types';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const {
     CONTACT_INFORMATION,
@@ -64,6 +66,7 @@ const ViewLoan = () => {
     }
 
     const goToDashboard = () => {
+        toast("Navigating to dashboard!")
         navigate('/dashboard');
     }
 
@@ -76,6 +79,7 @@ const ViewLoan = () => {
         }).then((response) => {
             console.log(response);
             console.log('Your loan application {}!', 'action');
+            navigate('/dashboard');
         }).catch(response => {
             console.log(response);
         });
@@ -84,13 +88,15 @@ const ViewLoan = () => {
     // cancal loan
     const approveOrRejectLoanRequest = (action: string) => {
         axios.post(`${baseUrl}/loan/${loanId}/action/${action}`
-            , {
+            ,{comments: 'test'}, {
             headers: {
                 'user-id': user
             }
         }).then((response) => {
+            toast("Wow so easy!")
             console.log(response);
             console.log('Your loan application {}!', action);
+            navigate('/dashboard');
         }).catch(response => {
             console.log(response);
         });
@@ -143,7 +149,7 @@ const ViewLoan = () => {
             <Grid>
                     <GridRow columns={6}>
                         <GridColumn>
-                            { loanSummary?.possibleAction?.includes('CAN_CANCEL') && 
+                            { loanSummary?.possibleActivities?.includes('CAN_CANCEL') && 
                             <Button primary className='width_100'
                                 onClick={cancelLoan} >Cancel Loan</Button>
                             }
@@ -155,18 +161,18 @@ const ViewLoan = () => {
                         <GridColumn>
                         </GridColumn>
                         <GridColumn>
-                            { loanSummary?.possibleAction?.includes('CAN_APPROVEORREJECT') && 
+                            { loanSummary?.possibleActivities?.includes('CAN_APPROVEORREJECT') && 
                             <Button primary className='width_100'
                                 onClick={() => approveOrRejectLoanRequest('REJECT')} >Reject</Button>
                             }
                         </GridColumn>
                         <GridColumn>
-                            { loanSummary?.possibleAction?.includes('CAN_APPROVEORREJECT') && 
+                            { loanSummary?.possibleActivities?.includes('CAN_APPROVEORREJECT') && 
                             <Button primary className='width_100'
                                 onClick={() => approveOrRejectLoanRequest('APPROVE')}  >Approve</Button>
                             }
 
-                            { loanSummary?.possibleAction?.includes('CAN_ACKNOWLEDGE_CORRECTION') && 
+                            { loanSummary?.possibleActivities?.includes('CAN_ACKNOWLEDGE_CORRECTION') && 
                             <Button primary className='width_100'
                                 onClick={acknowledgeCorrection}  >Acknowledge Correction</Button>
                             }
