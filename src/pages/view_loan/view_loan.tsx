@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { loanSummary } from '../../store/types';
 import { userInfo } from 'os';
+import { isApplicant } from '../../helper/helper';
 
 const {
     CONTACT_INFORMATION,
@@ -36,7 +37,7 @@ const ViewLoan = () => {
     let navigate = useNavigate();
     const [activeIndex, setActiveIndex] = useState(-1);
     const loanId = useSelector(getLoanId);
-    const { userId } = useSelector(getUser);
+    const { userId, user } = useSelector(getUser);
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
     const [loanSummary, setLoanSummary] = useState<loanSummary>();
 
@@ -66,9 +67,10 @@ const ViewLoan = () => {
         setActiveIndex(newIndex);
     }
 
-    // cancal loan
-    const cancelLoan = () => {
-        axios.post(`${baseUrl}/postdata`, {
+    // api call here
+    const handleLoan = (action: string) => {
+        const url = (action === 'Approve') ? `${baseUrl}/approveapi` : `${baseUrl}/cancelapi`;
+        axios.post(url, {
             loanApplicationId: loanId
         }, {
             headers: {
@@ -162,14 +164,21 @@ const ViewLoan = () => {
                     </AccordionContent>
                 </Accordion> */}
                 <Grid>
-                    <GridRow columns={3}>
+                    <GridRow columns={4}>
                         <GridColumn>
                         </GridColumn>
                         <GridColumn>
+                        </GridColumn>
+                        <GridColumn>
+                            {
+                                !isApplicant(user) &&
+                                <Button primary className='width_100'
+                                    onClick={() => handleLoan('Approve')} >Approve</Button>
+                            }
                         </GridColumn>
                         <GridColumn>
                             <Button primary className='width_100'
-                                onClick={cancelLoan} >Cancel Loan</Button>
+                                onClick={() => handleLoan('Cancel')} >Cancel</Button>
                         </GridColumn>
                     </GridRow>
                 </Grid>

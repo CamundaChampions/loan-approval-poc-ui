@@ -55,9 +55,9 @@ const LoanHeader = () => {
         // @ts-ignore
         const text: string = event?.target?.innerText;
         // @ts-ignore
-        const value = data.value;
+        const value: string = data.value;
         setSelectedOption({ key: value, text, value });
-        if (value.includes('Applicant')) {
+        if (value.toLowerCase().includes('applicant')) {
             dispatch(setUserType({ userType: UserType.Applicant, user: text, userId: value }));
         } else {
             dispatch(setUserType({ userType: UserType.NonApplicant, user: text, userId: value }));

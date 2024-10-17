@@ -8,3 +8,10 @@ export const isDashboardPage = (path: string) => {
     }
     return true;
 }
+
+export const isApplicant = (value: string) => {
+    if (value.toLowerCase().includes('applicant')) {
+        return true;
+    }
+    return false;
+}

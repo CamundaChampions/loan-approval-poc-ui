@@ -8,13 +8,14 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAppDispatch } from '../../store/store';
 import { setLoanApplicationId } from '../../store/slice';
+import { isApplicant } from '../../helper/helper';
 
 const Dashboard = () => {
 
     const dispatch = useAppDispatch();
     let navigate = useNavigate();
     const userType = useSelector(getUserType);
-    const { userId } = useSelector(getUser);
+    const { userId, user } = useSelector(getUser);
     const [loanSummaryList, setLoanSummaryList] = useState<loanSummary[]>([]);
     const [allowToCreateLoan, setAllowToCreateLoan] = useState<boolean>(false);
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -53,28 +54,18 @@ const Dashboard = () => {
         <div>
             <PageTitle title='Dashboard' />
             <Grid columns={1}>
-                {/* <GridRow>
-                    <GridColumn>
-                        <p>
-                            Welcome to <em>Loan Approval Application</em>
-                        </p>
-                    </GridColumn>
-                    <GridColumn>
-                        <p>
-                            Loan Request Assigned to you.
-                        </p>
-                    </GridColumn>
-                </GridRow> */}
                 {
                     allowToCreateLoan &&
-                    <GridRow columns={3}>
+                    <GridRow columns={4}>
+                        <GridColumn>
+                        </GridColumn>
+                        <GridColumn>
+                        </GridColumn>
                         <GridColumn>
                         </GridColumn>
                         <GridColumn>
                             <Button primary className='width_100'
                                 onClick={() => handleClick('apply')} >Apply Loan</Button>
-                        </GridColumn>
-                        <GridColumn>
                         </GridColumn>
                     </GridRow>
                 }
@@ -100,8 +91,11 @@ const Dashboard = () => {
                                         <TableHeaderCell>
                                             Loan Reason
                                         </TableHeaderCell>
-                                        <TableHeaderCell>
-                                        </TableHeaderCell>
+                                        {
+                                            !isApplicant(user) &&
+                                            <TableHeaderCell>
+                                            </TableHeaderCell>
+                                        }
                                     </TableRow>
                                 </TableHeader>
                                 <tbody>
@@ -123,11 +117,14 @@ const Dashboard = () => {
                                                 <TableCell>
                                                     {loan.reason}
                                                 </TableCell>
-                                                {/* <TableCell className='center'>
-                                                    <Button primary onClick={() => handleClick('view')}>
-                                                        {'View and Approve'}
-                                                    </Button>
-                                                </TableCell> */}
+                                                {
+                                                    !isApplicant(user) &&
+                                                    <TableCell className='center'>
+                                                        <Button primary onClick={() => handleClick('view')}>
+                                                            {'View & Approve'}
+                                                        </Button>
+                                                    </TableCell>
+                                                }
                                             </TableRow>
                                         ))
                                     }
@@ -137,7 +134,6 @@ const Dashboard = () => {
                     </GridRow>
                 }
             </Grid>
-            {/* <Button onClick={handleClick} >Apply Loan</Button> */}
         </div>
     )
 }
