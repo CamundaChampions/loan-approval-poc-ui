@@ -119,9 +119,7 @@ const ViewLoan = () => {
 
     // cancal loan
     const cancelLoan = () => {
-        axios.post(`${baseUrl}/postdata`, {
-            loanApplicationId: loanId
-        }, {
+        axios.delete(`${baseUrl}/loan/${loanId}/action/CANCEL`, {
             headers: {
                 'user-id': user
             }
