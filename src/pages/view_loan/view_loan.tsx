@@ -12,11 +12,7 @@ import {
 } from 'semantic-ui-react'
 import PageTitle from '../../components/page_title/page_title';
 import { LOAN_APPLICATION_FORM } from '../../components/constants/constants';
-import Securities from '../../components/loan_components/secutities';
-import ContactInformation from '../../components/loan_components/contact_information';
-import EmploymentInformation from '../../components/loan_components/employment_information';
 import LoanInfo from '../../components/loan_components/loan_info';
-import BankReference from '../../components/loan_components/bank_reference';
 import { useSelector } from 'react-redux';
 import { getLoanId, getUser } from '../../store/selectors';
 import { useNavigate } from 'react-router-dom';
