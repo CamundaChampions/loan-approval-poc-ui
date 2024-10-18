@@ -4,6 +4,7 @@ import Dashboard from "../pages/dashboard/dashboard"
 import ApplyLoan from "../pages/apply_loan/apply_loan"
 import ViewLoan from "../pages/view_loan/view_loan"
 import LoanHeader from "../components/loan_header/loan_header"
+import { ToastContainer } from 'react-toastify';
 
 const Layout = () => {
     return (
@@ -47,6 +48,7 @@ const Routes = () => {
     return (
         <Suspense>
             <RouterProvider router={router} />
+            <ToastContainer />
         </Suspense>
     )
 }

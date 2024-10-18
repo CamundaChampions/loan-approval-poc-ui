@@ -127,8 +127,10 @@ const ViewLoan = () => {
             }
         }).then((response) => {
             console.log(response);
+            toast("Your loan application cancelled!");
             console.log('Your loan application cancelled!');
         }).catch(response => {
+            toast("Error!");
             console.log(response);
         });
     }

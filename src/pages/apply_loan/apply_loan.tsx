@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { getUser } from '../../store/selectors';
 import ValidationMsg from '../../components/validation/message';
 import { initialValues, validationSchema } from './validationSchema';
+import { toast } from 'react-toastify';
 
 const {
     TERMS_IN_YEARS,
@@ -73,8 +74,10 @@ const ApplyLoan = () => {
                 'user-id': user
             }
         }).then((response) => {
+            toast("Your loan application submitted successfully!");
             callback(response);
         }).catch(response => {
+            toast("Error!");
             callback(response);
         });
     }
