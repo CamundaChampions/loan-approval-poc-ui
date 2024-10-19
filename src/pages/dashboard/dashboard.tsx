@@ -47,6 +47,9 @@ const Dashboard = () => {
   const fetchApplicationList = () => {
     axios
       .get(`${baseUrl}/loan`, {
+        params: {
+            includeclosedapplication: true
+        },
         headers: {
           "user-id": user,
         },
