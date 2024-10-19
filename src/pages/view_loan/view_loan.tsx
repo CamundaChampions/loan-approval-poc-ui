@@ -62,13 +62,12 @@ const ViewLoan = () => {
     }
 
     const goToDashboard = () => {
-        toast("Navigating to dashboard!")
         navigate('/dashboard');
     }
 
     const acknowledgeMissingDocProvided = () => {
         axios.post(`${baseUrl}/loan/${loanId}/doc/re-assessment`
-            , {
+            , {}, {
             headers: {
                 'user-id': user
             }
