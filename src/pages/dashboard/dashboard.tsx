@@ -41,6 +41,9 @@ const Dashboard = () => {
     
     useEffect(() => {
         axios.get(`${baseUrl}/loan`, {
+            params: {
+                includeclosedapplication: true
+            },
             headers: {
                 'user-id': user
             }
