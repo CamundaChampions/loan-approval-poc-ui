@@ -18,47 +18,39 @@ interface LoanInfo {
 const LoanInfo = (props: LoanInfo) => {
     const { loanApplicationId, amount, term, loanCategory, status, reason } = props;
     return (
-        <div className='accordion_content' >
-            <Grid columns={4}>
-                <GridRow>
-                    <GridColumn>
-                        <label className='shadow_label'>Loan Request Id</label>
-                    </GridColumn>
-                    <GridColumn>
-                        {loanApplicationId}
-                    </GridColumn>
-                    <GridColumn>
-                        <label className='shadow_label'>Current Status</label>
-                    </GridColumn>
-                    <GridColumn>
-                        {status}
-                    </GridColumn>
-                </GridRow>
-                <GridRow>
-                    <GridColumn>
-                        <label className='shadow_label'>Desired Loan Amount Rs.</label>
-                    </GridColumn>
-                    <GridColumn>
-                        RS {amount}/-
-                    </GridColumn>
-                    <GridColumn>
-                        <label className='shadow_label'>{TERMS_IN_YEARS}</label>
-                    </GridColumn>
-                    <GridColumn>
-                        {term} Year(s)
-                    </GridColumn>
-                </GridRow>
-                <GridRow>
-                    <GridColumn>
-                        <label className='shadow_label'>{LOAN_USAGE}</label>
-                    </GridColumn>
-                    <GridColumn>
-                        {loanCategory}
-                    </GridColumn>
-                </GridRow>
-            </Grid>
-        </div>
-    )
+      <div className="accordion_content">
+        <Grid columns={4}>
+          <GridRow>
+            <GridColumn width={3}>
+              <label className="shadow_label">Loan Request Id:</label>
+            </GridColumn>
+            <GridColumn width={5}>{loanApplicationId}</GridColumn>
+            <GridColumn width={3}>
+              <label className="shadow_label">Current Status:</label>
+            </GridColumn>
+            <GridColumn width={5}>{status}</GridColumn>
+          </GridRow>
+          <GridRow>
+            <GridColumn width={3}>
+              <label className="shadow_label">Desired Loan Amount:</label>
+            </GridColumn>
+            <GridColumn width={5}>
+              RS {amount} /-
+            </GridColumn>
+            <GridColumn width={3}>
+              <label className="shadow_label">{TERMS_IN_YEARS}:</label>
+            </GridColumn>
+            <GridColumn width={5}>{term} Year(s)</GridColumn>
+          </GridRow>
+          <GridRow>
+            <GridColumn width={3}>
+              <label className="shadow_label">{LOAN_USAGE}:</label>
+            </GridColumn>
+            <GridColumn width={5}>{loanCategory}</GridColumn>
+          </GridRow>
+        </Grid>
+      </div>
+    );
 }
 
 export default LoanInfo;
