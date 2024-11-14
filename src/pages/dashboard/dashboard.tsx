@@ -9,7 +9,8 @@ import {
   Button,
   Grid,
   GridRow,
-  GridColumn
+  GridColumn,
+  Checkbox
 } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 import { UserType, loanSummary, loanSummaryResponse } from "../../store/types";
@@ -44,14 +45,6 @@ const Dashboard = () => {
     }
   };
 
-  const handleIncludeClosedApplication = () => {
-    
-    console.log("before include check - {}", includeClosedApplication);
-    setIncludeClosedApplication(!includeClosedApplication);
-
-    fetchApplicationList();
-          
-  };
 
   const handleRowClick = (loan: loanSummary) => {
     dispatch(setLoanApplicationId({ loanId: loan.loanApplicationId }));
@@ -80,7 +73,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchApplicationList();
-  }, [user]);
+  }, [user, includeClosedApplication]);
 
   return (
     <div>
@@ -102,17 +95,14 @@ const Dashboard = () => {
         <GridRow columns={4}>
           <GridColumn>
             <div className="checkbox-wrapper">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={includeClosedApplication}
-                  onClick={handleIncludeClosedApplication}
-                  // onChange={handleIncludeClosedApplication}
-                  id="includeAll"
-                  name="includeAll"
-                />
-                <span>include all</span>
-              </label>
+              <Checkbox
+                type="checkbox"
+                label="include all"
+                checked={includeClosedApplication}
+                onChange={() => setIncludeClosedApplication(!includeClosedApplication)}
+                id="includeAll"
+                name="includeAll"
+              />
             </div>
           </GridColumn>
           <GridColumn></GridColumn>
