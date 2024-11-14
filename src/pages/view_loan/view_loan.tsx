@@ -118,7 +118,7 @@ const ViewLoan = () => {
         }
       )
       .then((response) => {
-        toast("Wow so easy!");
+        toast("Your action has been submitted!");
         console.log(response);
         console.log("Your loan application {}!", action);
         navigate("/dashboard");
